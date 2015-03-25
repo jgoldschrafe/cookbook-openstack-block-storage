@@ -47,6 +47,32 @@ openstack_identity_register 'Register Service Tenant' do
   action :create_tenant
 end
 
+openstack_identity_register 'Register Cinder V1 Volume Service' do
+  auth_uri auth_uri
+  bootstrap_token bootstrap_token
+  service_name 'cinder'
+  service_type 'volume'
+  service_description 'Cinder Volume Service V1'
+  endpoint_region region
+  endpoint_adminurl ::URI.decode admin_cinder_api_endpoint.to_s
+  endpoint_internalurl ::URI.decode internal_cinder_api_endpoint.to_s
+  endpoint_publicurl ::URI.decode public_cinder_api_endpoint.to_s
+  action :create_service
+end
+
+openstack_identity_register 'Register Cinder V1 Volume Endpoint' do
+  auth_uri auth_uri
+  bootstrap_token bootstrap_token
+  service_name 'cinder'
+  service_type 'volume'
+  service_description 'Cinder Volume Service V1'
+  endpoint_region region
+  endpoint_adminurl ::URI.decode admin_cinder_api_endpoint.to_s
+  endpoint_internalurl ::URI.decode internal_cinder_api_endpoint.to_s
+  endpoint_publicurl ::URI.decode public_cinder_api_endpoint.to_s
+  action :create_endpoint
+end
+
 openstack_identity_register 'Register Cinder V2 Volume Service' do
   auth_uri auth_uri
   bootstrap_token bootstrap_token
